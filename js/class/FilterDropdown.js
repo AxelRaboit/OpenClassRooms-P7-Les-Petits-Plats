@@ -1,13 +1,10 @@
-import DOM from "../modules/dom.js";
-import Api from "./Api.js";
 import utils from '../modules/utils.js';
-import Tags from './Tags.js';
 
 export default class FilterDropdown {
     constructor(type, items) {
         this.type = type;
         this.items = items;
-        this.label = (type === 'ingrédient') ? 'ingrédient' : type;
+        this.label = type;
         this.tagList = [];
         this.create();
 
@@ -29,7 +26,6 @@ export default class FilterDropdown {
         input.setAttribute('id', `${this.type}-input`);
         input.setAttribute('name', `${this.type}-input`);
         input.setAttribute('placeholder', `Rechercher un ${this.label}`);
-
 
         // Label creation
         let label = document.createElement('p');
@@ -102,19 +98,5 @@ export default class FilterDropdown {
             document.removeEventListener('click', this.close);
             this.element.addEventListener('click', this.open);
         }
-    }
-
-    static createDropdowns() {
-        const ingredients = Api.getAllIngredients().map(ingredient => new Tags('ingrédient', ingredient));
-        const appareils = Api.getAllAppliances().map(appareil => new Tags('appareil', appareil));
-        const ustensiles = Api.getAllUstensils().map(ustensile => new Tags('ustensile', ustensile));
-    
-        new FilterDropdown('ingredient', ingredients);
-        new FilterDropdown('appareil', appareils);
-        new FilterDropdown('ustensile', ustensiles);
-
-        this.instances.forEach(dropdown => {
-            DOM.append(dropdown.element, document.getElementById('filters-dropdown'));
-        });
     }
 }
