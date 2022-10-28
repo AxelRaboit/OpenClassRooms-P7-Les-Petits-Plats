@@ -78,12 +78,4 @@ export default class Recipe {
 
         return container;
     }
-
-    /**
-     * Toggle the visibility of a recipe
-     */
-    toggleVisibility = () => {
-        this.element.classList.toggle('hidden');
-        this.visible = !this.visible;
-    }
 }
