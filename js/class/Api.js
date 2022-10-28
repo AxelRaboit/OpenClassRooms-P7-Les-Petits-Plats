@@ -27,8 +27,9 @@ export default class Api {
         return Api.allIngredients;
     }
 
-    /*
+    /**
      * Retreive all existing recipes
+     * @returns {Array} Array of all recipes   
     */
     static getAllRecipes = () => {
         return Api.recipes;

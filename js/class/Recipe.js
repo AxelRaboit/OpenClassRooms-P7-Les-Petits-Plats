@@ -10,6 +10,7 @@ export default class Recipe {
         this.ustensils = recipe.ustensils;
         this.visible = true;
 
+        // Stock all recipes in an array
         Recipe.instance = [...Recipe.instances, this];
     }
 
@@ -54,6 +55,7 @@ export default class Recipe {
         let howToMake = document.createElement('p');
         howToMake.setAttribute('class', 'howToMake');
 
+        // If the description is too long, we cut it
         if (this.description.length >= 200) {
             howToMake.innerText = `${this.description.slice(0, 200)}...`;
         } else {
@@ -77,6 +79,9 @@ export default class Recipe {
         return container;
     }
 
+    /**
+     * Toggle the visibility of a recipe
+     */
     toggleVisibility = () => {
         this.element.classList.toggle('hidden');
         this.visible = !this.visible;
