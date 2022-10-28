@@ -1,6 +1,8 @@
 export default class Api {
     static recipes = [];
     static allIngredients = [];
+    static allAppliances = [];
+    static allUstensils = [];
 
     static init = async () => {
         const req = await fetch('recipes.json');
@@ -17,14 +19,55 @@ export default class Api {
      * @returns {Array} Array of all ingredients
      */
     static getAllIngredients = () => {
-        Api.recipes.forEach(recipe => {
-            recipe.ingredients.forEach(ingredient => {
-                if (!Api.allIngredients.includes(ingredient.ingredient)) {
-                    Api.allIngredients = [...Api.allIngredients, ingredient];
-                }
-            });
-        });
+        if (Api.allIngredients.length === 0) {
+            Api.recipes.forEach(recipe => {
+                recipe.ingredients.map( ingredients => {
+                    const ingredient =  ingredients.ingredient;
+
+                    if (!Api.allIngredients.includes(ingredient)) {
+                        Api.allIngredients = [...Api.allIngredients, ingredient];
+                    }
+                })
+            })
+        }
+
         return Api.allIngredients;
+    }
+
+    /**
+     * Retreive all appliances from recipes
+     * @returns {Array} Array of all appliances
+     */
+    static getAllAppliances = () => {
+
+        if (Api.allAppliances.length === 0) {
+            Api.recipes.forEach(recipe => {
+                if (!Api.allAppliances.includes(recipe.appliance)) {
+                    Api.allAppliances = [...Api.allAppliances, recipe.appliance];
+                }
+            })
+        }
+
+        return Api.allAppliances;
+    }
+
+    /**
+     * Retreive all ustensiles from recipes
+     * @returns {Array} Array of all ustensiles
+     */
+    static getAllUstensils = () => {
+        if (Api.allUstensils.length === 0) {
+            Api.recipes.forEach(recipe => {
+                recipe.ustensils.map( ustensile => {
+
+                    if (!Api.allUstensils.includes(ustensile.toLowerCase())) {
+                        Api.allUstensils = [...Api.allUstensils, ustensile];
+                    }
+                })
+            })
+        }
+
+        return Api.allUstensils;
     }
 
     /**
@@ -33,5 +76,14 @@ export default class Api {
     */
     static getAllRecipes = () => {
         return Api.recipes;
+    }
+
+    static getRecipe = (id) => {
+        const recipe = Api.recipes.find(recipe => recipe.id === id);
+
+        if (recipe.length !== 1) {
+            throw new Error('Recipe not found');
+        }
+        return recipe[0];
     }
 }
