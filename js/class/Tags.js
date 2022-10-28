@@ -21,8 +21,6 @@ export default class Tags {
         element.setAttribute('data-value', this.name);
         element.innerText = this.name;
 
-        element.addEventListener('click', this.add);
-
         this.listElementResult = element;
 
         return element;
