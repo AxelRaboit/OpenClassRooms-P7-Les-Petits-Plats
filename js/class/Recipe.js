@@ -26,16 +26,15 @@ export default class Recipe {
         let image = document.createElement('img');
         image.setAttribute('src', 'https://dummyimage.com/380x300/ED6454/fff'); // Default aaa/fff
 
-
         image.setAttribute('class', 'recipe__img');
 
         let description = document.createElement('div');
         description.setAttribute('class', 'recipe__description');
 
-        let descTop = document.createElement('div');
-        descTop.setAttribute('class', 'recipe__description__top');
+        let descriptionTop = document.createElement('div');
+        descriptionTop.setAttribute('class', 'recipe__description__top');
 
-        descTop.innerHTML = `
+        descriptionTop.innerHTML = `
             <h2 class="name">${this.name}</h2>
             <span class="duration"><i class="far fa-clock"></i>${this.time} min</span>
         `;
@@ -61,14 +60,14 @@ export default class Recipe {
             howToMake.innerText = this.description;
         }
 
-        let descBottom = document.createElement('div');
-        descBottom.setAttribute('class', 'recipe__description__bottom');
+        let bottomDescription = document.createElement('div');
+        bottomDescription.setAttribute('class', 'recipe__description__bottom');
 
-        descBottom.appendChild(ingredients);
-        descBottom.appendChild(howToMake);
+        bottomDescription.appendChild(ingredients);
+        bottomDescription.appendChild(howToMake);
 
-        description.appendChild(descTop);
-        description.appendChild(descBottom);
+        description.appendChild(descriptionTop);
+        description.appendChild(bottomDescription);
 
         container.appendChild(image);
         container.appendChild(description);

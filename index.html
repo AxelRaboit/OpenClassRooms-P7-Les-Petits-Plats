@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Les petits plats</title>
+    <title>Les Petits Plats</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/c005bc523d.js" crossorigin="anonymous"></script>
     <script src="js/main.js" type="module"></script>
@@ -14,9 +14,9 @@
         <img class="header__logo" src="image/logo.svg" alt="Les petits plats">
     </header>
 
-    <section class="search-principal">
-        <input type="text" class="search-principal__input" id="search-principal__input" name="search-principal" spellcheck="true" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
-        <i class="fas fa-search search-principal__icon"></i>
+    <section class="main-search">
+        <input type="text" class="main-search__input" id="main-search__input" name="main-search" spellcheck="true" placeholder="Rechercher un ingrédient, appareil, ustensiles ou une recette">
+        <i class="fas fa-search main-search__icon"></i>
     </section>
 
     <ul id="tags-list" class="tags-list">
@@ -28,8 +28,10 @@
     </section>
 
     <section id="recipes-container" class="recipes-container">
-        <p class="empty-msg">Aucune recette ne correspond à votre critère… vous pouvez
-            chercher « tarte aux pommes », « poisson », etc.</p>
+        <p class="empty-msg">
+            Aucune recette ne correspond à votre recherche vous pouvez
+            tapez « tarte aux pommes », « poisson », etc...
+        </p>
     </section>
 </body>
 </html>
