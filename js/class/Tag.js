@@ -74,7 +74,7 @@ export default class Tag {
      */
     delete = () => {
         let newActiveTags = Tag.active.filter(tag => tag !== this);
-        Tas.active = newActiveTags;
+        Tag.active = newActiveTags;
 
         DOM.remove(this.tag());
         search(Tag.active, Recipe.instances);
