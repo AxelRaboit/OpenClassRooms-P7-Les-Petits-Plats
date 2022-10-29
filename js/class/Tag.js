@@ -1,7 +1,7 @@
 export default class Tag {
     constructor(type, name) {
         this.type = type;
-        this.name = name;
+        this.name = name.toLowerCase();
 
         Tag.instances = [...Tag.instances, this];
     }

@@ -31,6 +31,9 @@ export default class FilterDropdown {
             `Rechercher un ${this.label.slice(-1) === 's' ? this.label.slice(0, -1) : this.label}`
         );
 
+        // Add a listener to the input field to filter the dropdown list
+        input.addEventListener('input', this.search)
+
         // Label creation
         const label = document.createElement('p');
         label.setAttribute('class', 'dropdown-item__label');
@@ -103,4 +106,62 @@ export default class FilterDropdown {
             this.element.addEventListener('click', this.open);
         }
     }
+
+    /**
+     * Search in the list of tags the tags corresponding to the user's input
+     * @param {InputEvent} e 
+     */
+    search = (e) => {
+        const content = e.target.value.toLowerCase();
+
+        /* if when the user type it's superior or egal to 3 characters
+        or when the user use the backspace and it's superior or egal to 2 characters */
+        if (content.length >= 3 || (e.inpuType === 'deleteContentBackward' && content.length >= 3)) {
+            this.element.classList.add('entries');
+            this.tagList.forEach(tag => {
+                let str = tag.name.toLowerCase();
+                if (str.includes(content)) {
+                    // if the tag name contains the user's input, we show it
+                    tag.listElementResult.classList.remove('hidden-by-keydown');
+                } else {
+                    // if the tag name doesn't contain the user's input, we hide it
+                    tag.listElementResult.classList.add('hidden-by-keydown');
+                }
+            });
+        } else {
+            this.element.classList.remove('entries');
+            this.tagList.forEach(tag => {
+                tag.listElementResult.classList.remove('hidden-by-keydown');
+            });
+        };
+
+        FilterDropdown.emptyMessage();
+    }
+
+    static emptyMessage = () => {
+        // Get all elements from the dropdown list that are not hidden
+        let ingredient = document.querySelectorAll('.ingredients-dropdown li:not(.hidden-by-tags):not(.already-selected):not(.hidden-by-keydown)');
+        let appareil = document.querySelectorAll('.appareils-dropdown li:not(.hidden-by-tags):not(.already-selected):not(.hidden-by-keydown)');
+        let ustensile = document.querySelectorAll('.ustensiles-dropdown li:not(.hidden-by-tags):not(.already-selected):not(.hidden-by-keydown)');
+        
+        // If there is no element in the list, we show the error message
+        if (appareil.length === 0) {
+            document.querySelector('.appareils-dropdown .empty-msg').classList.add('visible');
+        } else {
+            document.querySelector('.appareils-dropdown .empty-msg').classList.remove('visible');
+        }
+
+        if (ingredient.length === 0) {
+            document.querySelector('.ingredients-dropdown .empty-msg').classList.add('visible');
+        } else {
+            document.querySelector('.ingredients-dropdown .empty-msg').classList.remove('visible');
+        }
+
+        if (ustensile.length === 0) {
+            document.querySelector('.ustensiles-dropdown .empty-msg').classList.add('visible');
+        } else {
+            document.querySelector('.ustensiles-dropdown .empty-msg').classList.remove('visible');
+        }
+    }
+
 }
