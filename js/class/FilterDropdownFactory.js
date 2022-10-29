@@ -5,11 +5,19 @@ import Dropdown from "./FilterDropdown.js";
 
 export default class FilterDropdownFactory {
     static createFilterDropdown = (tags) => {
-        const { ingredients, appareils, ustensiles } = tags;
-
-        new FilterDropdown('ingredient', ingredients);
-        new FilterDropdown('appareil', appareils);
-        new FilterDropdown('ustensile', ustensiles);
+        
+        /* We take the tags object loop into it and remove the 's'
+        at the end to get the final label and create the dropdown */
+        for (const [key, value] of Object.entries(tags)) {
+            console.log(tags)
+            new FilterDropdown(key, value);
+        }
+        
+        // OLD SOLUTION
+        /* const { ingredients, appareils, ustensiles } = tags; */
+        /* new FilterDropdown('ingredients', ingredients);
+        new FilterDropdown('appareils', appareils);
+        new FilterDropdown('ustensiles', ustensiles); */
     }
 
     static createDropdowns() {

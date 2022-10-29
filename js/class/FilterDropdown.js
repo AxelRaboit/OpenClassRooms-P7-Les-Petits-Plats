@@ -25,7 +25,11 @@ export default class FilterDropdown {
         input.setAttribute('class', 'dropdown-item__input');
         input.setAttribute('id', `${this.type}-input`);
         input.setAttribute('name', `${this.type}-input`);
-        input.setAttribute('placeholder', `Rechercher un ${this.label}`);
+        // if this.label ends by 's' we remove it otherwise we do nothing
+        input.setAttribute(
+            'placeholder',
+            `Rechercher un ${this.label.slice(-1) === 's' ? this.label.slice(0, -1) : this.label}`
+        );
 
         // Label creation
         const label = document.createElement('p');
