@@ -1,25 +1,9 @@
 import DOM from "../modules/dom.js";
+import Error from "./Error.js";
 
-export default class ErrorFactory {
-    constructor(message) {
-        this.message = message;
-    }
-
-    view = () => {    
-        let containerError = document.createElement('div');
-        containerError.setAttribute('class', 'container-error');
-    
-        let errorMessage = document.createElement('h2');
-        errorMessage.setAttribute('class', 'error-msg');
-        errorMessage.innerText = this.message;
-    
-        containerError.appendChild(errorMessage);
-
-        return containerError;
-    }
-    
+export default class ErrorFactory {    
     static createError = (error) => {
-        let item = new ErrorFactory(error.message);
+        let item = new Error(error.message);
         DOM.append(item.view(), document.body);
     }
 }
