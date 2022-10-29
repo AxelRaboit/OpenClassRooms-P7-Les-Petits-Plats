@@ -15,12 +15,12 @@ export default class FilterDropdown {
 
     create = () => {
         // Container creation
-        let container = document.createElement('div');
+        const container = document.createElement('div');
         container.setAttribute('class', `dropdown-item dd-${this.type}`);
         container.setAttribute('data-state', 'close');
 
         // Input field creation
-        let input = document.createElement('input');
+        const input = document.createElement('input');
         input.setAttribute('type', 'text');
         input.setAttribute('class', 'dropdown-item__input');
         input.setAttribute('id', `${this.type}-input`);
@@ -28,17 +28,17 @@ export default class FilterDropdown {
         input.setAttribute('placeholder', `Rechercher un ${this.label}`);
 
         // Label creation
-        let label = document.createElement('p');
+        const label = document.createElement('p');
         label.setAttribute('class', 'dropdown-item__label');
         label.innerText = `${this.label}`;
 
         // Icon creation
-        let icon = document.createElement('i');
+        const icon = document.createElement('i');
         icon.setAttribute('class', 'fas fa-chevron-down dropdown-item__icon');
         this.closeIcon = icon;
 
         // List item
-        let list = document.createElement('ul');
+        const list = document.createElement('ul');
         list.setAttribute('class', `dropdown-item__list ${this.type}-dropdown`);
 
         // Fill the list
@@ -48,7 +48,7 @@ export default class FilterDropdown {
         });
 
         // Error message about no filter available
-        let emptyMsg = document.createElement('p');
+        const emptyMsg = document.createElement('p');
         emptyMsg.setAttribute('class', 'empty-msg');
         emptyMsg.innerText = "Aucun filtre disponible";
 

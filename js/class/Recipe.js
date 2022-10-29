@@ -21,18 +21,18 @@ export default class Recipe {
      * @returns {HTMLElement}
      */
     view = () => {
-        let container = document.createElement('article');
+        const container = document.createElement('article');
         container.setAttribute('class', 'recipe');
 
-        let image = document.createElement('img');
+        const image = document.createElement('img');
         image.setAttribute('src', 'https://dummyimage.com/380x300/ED6454/fff'); // Default aaa/fff
 
         image.setAttribute('class', 'recipe__img');
 
-        let description = document.createElement('div');
+        const description = document.createElement('div');
         description.setAttribute('class', 'recipe__description');
 
-        let descriptionTop = document.createElement('div');
+        const descriptionTop = document.createElement('div');
         descriptionTop.setAttribute('class', 'recipe__description__top');
 
         descriptionTop.innerHTML = `
@@ -40,7 +40,7 @@ export default class Recipe {
             <span class="duration"><i class="far fa-clock"></i>${this.time} min</span>
         `;
 
-        let ingredients = document.createElement('ul');
+        const ingredients = document.createElement('ul');
         ingredients.setAttribute('class', 'ingredients-list');
 
         this.ingredients.forEach(ingredient => {
@@ -52,7 +52,7 @@ export default class Recipe {
             `;
         });
 
-        let howToMake = document.createElement('p');
+        const howToMake = document.createElement('p');
         howToMake.setAttribute('class', 'howToMake');
 
         // If the description is too long, we cut it
@@ -62,7 +62,7 @@ export default class Recipe {
             howToMake.innerText = this.description;
         }
 
-        let bottomDescription = document.createElement('div');
+        const bottomDescription = document.createElement('div');
         bottomDescription.setAttribute('class', 'recipe__description__bottom');
 
         bottomDescription.appendChild(ingredients);
