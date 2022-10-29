@@ -1,8 +1,4 @@
-// --------------------------------------------------
-// Tag style
-// --------------------------------------------------
-
-.tag{
+.tag {
     display: inline-flex;
     align-items: center;
     gap: 12px;
@@ -15,11 +11,11 @@
     color: $white;
     text-transform: capitalize;
 
-    &.tag-ingredient{ background-color: $blue; }
-    &.tag-appareil{ background-color: $green; }
-    &.tag-ustensile{ background-color: $orange; }
+    &.tag-ingredient { background-color: $blue; }
+    &.tag-appareil { background-color: $green; }
+    &.tag-ustensile { background-color: $orange; }
 
-    &__icon{
+    &__icon {
         font-size: 1.25rem;
         cursor: pointer;
     }

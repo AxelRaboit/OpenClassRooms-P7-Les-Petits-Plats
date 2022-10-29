@@ -11,7 +11,6 @@ export default class Api {
         }
         const data = await req.json();
         Api.recipes = data.recipes;
-        console.log(Api.recipes);
     }
 
     /**
