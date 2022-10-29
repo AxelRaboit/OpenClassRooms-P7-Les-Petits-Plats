@@ -1,9 +1,9 @@
-export default class Tags {
+export default class Tag {
     constructor(type, name) {
         this.type = type;
         this.name = name;
 
-        Tags.instances = [...Tags.instances, this];
+        Tag.instances = [...Tag.instances, this];
     }
 
     static instances = [];

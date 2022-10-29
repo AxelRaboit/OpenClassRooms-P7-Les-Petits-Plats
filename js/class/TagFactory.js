@@ -1,5 +1,5 @@
 import Api from "./Api.js";
-import Tags from "./Tags.js";
+import Tags from "./Tag.js";
 import FilterDropdownFactory from "./FilterDropDownFactory.js";
 
 export default class TagFactory {
