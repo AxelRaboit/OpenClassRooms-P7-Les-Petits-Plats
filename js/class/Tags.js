@@ -17,7 +17,7 @@ export default class Tags {
             return this.listElementResult;
         }
 
-        let element = document.createElement('li');
+        const element = document.createElement('li');
         element.setAttribute('data-value', this.name);
         element.innerText = this.name;
 
