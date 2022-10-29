@@ -1,5 +1,5 @@
 import FilterDropdown from "./FilterDropdown.js";
-/* import DOM from "../modules/dom.js"; */
+import DOM from "../modules/dom.js";
 import TagFactory from "./TagFactory.js";
 import Dropdown from "./FilterDropdown.js";
 
