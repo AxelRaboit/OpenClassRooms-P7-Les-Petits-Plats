@@ -9,7 +9,6 @@ export default class FilterDropdownFactory {
         /* We take the tags object loop into it and remove the 's'
         at the end to get the final label and create the dropdown */
         for (const [key, value] of Object.entries(tags)) {
-            console.log(tags)
             new FilterDropdown(key, value);
         }
         
