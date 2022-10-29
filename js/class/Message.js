@@ -1,8 +1,8 @@
-export default class Error {
-    constructor(message, color = null, backgroundColor = null) {
+export default class Message {
+    constructor(message, color, backgroundColor) {
         this.message = message;
-        this.color = (color ? color : '#000');
-        this.backgroundColor = (backgroundColor ? backgroundColor : '#FFF');
+        this.color = color;
+        this.backgroundColor = backgroundColor;
     }
 
     view = () => {    

@@ -1,7 +1,7 @@
 import Api from "./class/Api.js";
 import FilterDropdownFactory from "./class/FilterDropdownFactory.js";
 import RecipeFactory from "./class/RecipeFactory.js";
-import ErrorFactory from "./class/ErrorFactory.js";
+import MessageFactory from './class/MessageFactory.js';
 
 try {
     await Api.init();
@@ -9,5 +9,5 @@ try {
     RecipeFactory.createRecipes();
 
 } catch (err) {
-    ErrorFactory.createError(err);
+    MessageFactory.createError(err.message, document.body);
 }
