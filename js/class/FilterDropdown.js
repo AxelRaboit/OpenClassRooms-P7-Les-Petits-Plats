@@ -1,4 +1,5 @@
 import utils from '../modules/utils.js';
+import Recipe from './Recipe.js';
 
 export default class FilterDropdown {
     constructor(type, items) {
@@ -133,16 +134,51 @@ export default class FilterDropdown {
             this.tagList.forEach(tag => {
                 tag.listElementResult.classList.remove('hidden-by-keydown');
             });
-        };
+        }
 
         FilterDropdown.emptyMessage();
     }
 
+    /**
+     * Update the tag lists (ingredients, appliances and ustensils dropdown)
+     */
+    static updateDropDowns = () => {
+        let list = document.querySelectorAll('.dropdown-item__list li');
+        list.forEach(li => li.classList.add('hidden-by-tags'));
+
+        // We get the recipe which are visible according active tags
+        let recipes = Recipe.instances.filter(recipe => recipe.visible);
+
+        /* For each recipe we retrieve all appareils, ustensils and ingredients
+        and for each we remove the class hidden-by-tags */
+        recipes.forEach(recipe => {
+            let appareils = document.querySelectorAll(`.appareils-dropdown [data-value="${recipe.appliance.toLowerCase()}"]`);
+            appareils.forEach(appareil => appareil.classList.remove('hidden-by-tags'));
+        
+            let ingredients = recipe.ingredients;
+            ingredients.forEach(currentEl => {
+                let ingredientElement = document.querySelector(`.ingredients-dropdown [data-value="${currentEl.ingredient.toLowerCase()}"]`);
+                ingredientElement.classList.remove('hidden-by-tags');
+            })
+
+            let ustensils = recipe.ustensils;
+            ustensils.forEach(current => {
+                let ustensilElement = document.querySelector(`.ustensiles-dropdown [data-value="${current.toLowerCase()}"]`);
+                ustensilElement.classList.remove('hidden-by-tags');
+            })
+        })
+
+        // this code add the execution of the 'emptyMessage' method at the end of the JavaScript event loop
+        setTimeout(() => {
+            FilterDropdown.emptyMessage();
+        }, 0);
+    }
+
     static emptyMessage = () => {
         // Get all elements from the dropdown list that are not hidden
-        let ingredient = document.querySelectorAll('.ingredients-dropdown li:not(.hidden-by-tags):not(.already-selected):not(.hidden-by-keydown)');
-        let appareil = document.querySelectorAll('.appareils-dropdown li:not(.hidden-by-tags):not(.already-selected):not(.hidden-by-keydown)');
-        let ustensile = document.querySelectorAll('.ustensiles-dropdown li:not(.hidden-by-tags):not(.already-selected):not(.hidden-by-keydown)');
+        const ingredient = document.querySelectorAll('.ingredients-dropdown li:not(.hidden-by-tags):not(.already-selected):not(.hidden-by-keydown)');
+        const appareil = document.querySelectorAll('.appareils-dropdown li:not(.hidden-by-tags):not(.already-selected):not(.hidden-by-keydown)');
+        const ustensile = document.querySelectorAll('.ustensiles-dropdown li:not(.hidden-by-tags):not(.already-selected):not(.hidden-by-keydown)');
         
         // If there is no element in the list, we show the error message
         if (appareil.length === 0) {

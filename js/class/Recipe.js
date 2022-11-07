@@ -11,7 +11,7 @@ export default class Recipe {
         this.visible = true;
 
         // Stock all recipes in an array
-        Recipe.instance = [...Recipe.instances, this];
+        Recipe.instances = [...Recipe.instances, this];
     }
 
     static instances = [];
@@ -44,10 +44,16 @@ export default class Recipe {
         ingredients.setAttribute('class', 'ingredients-list');
 
         this.ingredients.forEach(ingredient => {
+
+            const ingerdientQuantity = ingredient.quantity ? ingredient.quantity : '';
+            const ingerdientUnit = ingredient.unit ? ingredient.unit : '';
+            
             ingredients.innerHTML += 
             `
-                <li class="ingredients-list__item"><span>${ingredient.ingredient}: </span>
-                    ${ingredient.quantity} ${ingredient.unit || ''}
+                <li class="ingredients-list__item"><span>
+                    ${ingredient.ingredient}${ingerdientQuantity != '' ? ':' : ''} 
+                </span>
+                    ${ingerdientQuantity} ${ingerdientUnit}
                 </li>
             `;
         });
@@ -77,5 +83,13 @@ export default class Recipe {
         this.element = container;
 
         return container;
+    }
+
+    /**
+     * Switch the visibility between visible and not visible
+     */
+    toggleVisibility = () => {
+        this.element.classList.toggle('hidden');
+        this.visible = !this.visible;
     }
 }

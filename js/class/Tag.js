@@ -1,7 +1,8 @@
 import DOM from '../modules/DOM.js';
 import Recipe from './Recipe.js';
+import search from '../modules/search.js';
 
-export default class Tag{
+export default class Tag {
     constructor(type, name) {
         this.type = type;
         this.name = name.toLowerCase();
@@ -10,7 +11,7 @@ export default class Tag{
     }
 
     static instances = [];
-    static active = []
+    static active = [];
 
     /**
      * Create the view of a tag who'll be displayed in the active filters section
@@ -64,6 +65,7 @@ export default class Tag{
     add = () => {
         Tag.active = [...Tag.active, this];
         DOM.append(this.tag(), document.getElementById('tags-list'));
+        search(Tag.active, Recipe.instances);
         this.listElementResult.classList.add('already-selected');
     }
 
@@ -74,6 +76,7 @@ export default class Tag{
         let newActiveTags = Tag.active.filter(tag => tag !== this);
         Tag.active = newActiveTags;
         DOM.remove(this.tag());
+        search(Tag.active, Recipe.instances);
         this.listElementResult.classList.remove('already-selected');
     }
 }
