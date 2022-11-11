@@ -1,7 +1,7 @@
 import FilterDropdown from '../class/FilterDropdown.js';
 
     const search = (activeTags, recipes) => {
-    
+
         // Get the main search input
         const searchBar = document.getElementById('main-search__input');
     

@@ -58,21 +58,21 @@ export default class Recipe {
             `;
         });
 
-        const howToMake = document.createElement('p');
-        howToMake.setAttribute('class', 'howToMake');
+        const howToCook = document.createElement('p');
+        howToCook.setAttribute('class', 'howToCook');
 
         // If the description is too long, we cut it
         if (this.description.length >= 200) {
-            howToMake.innerText = `${this.description.slice(0, 200)}...`;
+            howToCook.innerText = `${this.description.slice(0, 200)}...`;
         } else {
-            howToMake.innerText = this.description;
+            howToCook.innerText = this.description;
         }
 
         const bottomDescription = document.createElement('div');
         bottomDescription.setAttribute('class', 'recipe__description__bottom');
 
         bottomDescription.appendChild(ingredients);
-        bottomDescription.appendChild(howToMake);
+        bottomDescription.appendChild(howToCook);
 
         description.appendChild(descriptionTop);
         description.appendChild(bottomDescription);
