@@ -6,7 +6,7 @@ import FilterDropdown from '../class/FilterDropdown.js';
         const searchBar = document.getElementById('main-search__input');
     
         // Get the value of the search input if the value length is greater or equal than 3 or return null
-        const search = (searchBar.value.length >= 3) ? searchBar.value : null;
+        const search = (searchBar.value.length >= 3) ? searchBar.value.toLowerCase() : null;
     
         // Loop through each recipe and test if there is a match with the filters or the user's search
         recipes.forEach(recipe => {
