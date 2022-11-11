@@ -1,6 +1,6 @@
 import Api from "./Api.js";
 import Tags from "./Tag.js";
-import FilterDropdownFactory from "./FilterDropDownFactory.js";
+import FilterDropdownFactory from "./FilterDropdownFactory.js";
 
 const INGREDIENT = 'ingredient';
 const APPLIANCE = 'appareil';

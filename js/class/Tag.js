@@ -1,4 +1,4 @@
-import DOM from '../modules/DOM.js';
+import DOM from '../modules/dom.js';
 import Recipe from './Recipe.js';
 import search from '../modules/search.js';
 
