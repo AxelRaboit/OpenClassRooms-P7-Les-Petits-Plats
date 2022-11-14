@@ -1,4 +1,5 @@
 import FilterDropdown from '../class/FilterDropdown.js';
+import mainSearchVisibleChecker from './mainSearch.js';
 
     const search = (activeTags, recipes) => {
 
@@ -30,12 +31,7 @@ import FilterDropdown from '../class/FilterDropdown.js';
 
             // If the user type on the main search bar and it's superior or egal to 3 characters
             if (search) {
-                // For each recipe if the search value is not included in the recipe name, we hide it
-                recipe.ingredients.forEach(current => {
-                    if (!current.ingredient.toLowerCase().includes(search) && !recipe.description.toLowerCase().includes(search) && !recipe.name.toLowerCase().includes(search)) {
-                        visible = false;
-                    }
-                });
+                visible = mainSearchVisibleChecker(recipe, visible);
             }
 
             // If the recipe element is hidden remove the class hidden otherwise add it
