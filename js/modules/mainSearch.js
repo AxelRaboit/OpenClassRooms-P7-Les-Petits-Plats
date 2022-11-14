@@ -14,6 +14,13 @@ const mainSearchVisibleChecker = (recipe, visible) => {
         }
     });
 
+    /* for (let i = 0; i < recipe.ingredients.length; i++) {
+        const current = recipe.ingredients[i];
+        if (!current.ingredient.toLowerCase().includes(search) && !recipe.description.toLowerCase().includes(search) && !recipe.name.toLowerCase().includes(search)) {
+            visibility = false;
+        }
+    } */
+
     return visibility;
 }
 
