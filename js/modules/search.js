@@ -10,6 +10,7 @@ import FilterDropdown from '../class/FilterDropdown.js';
         recipes.forEach(recipe => {
             let visible = true;
 
+            // TAG FILTERS
             // If there is any active tags, check if the recipe has any of them
             if (activeTags.length > 0) {
                 const appareils = [recipe.appliance.toLowerCase()];
@@ -23,26 +24,33 @@ import FilterDropdown from '../class/FilterDropdown.js';
                     if (!allFilters.includes(tag.name.toLowerCase())) {
                         visible = false;
                     }
-                })
+                });
             }
 
+            // SEARCH BAR
             // If the user type on the main search bar and it's superior or egal to 3 characters
             if (searchTerms) {
                 const recipeName = Normalize(recipe.name);
                 const recipeDescription = Normalize(recipe.description);
     
+                // If the recipe name and the recipe descrition are not including the search terms, set visible to false
+                // It means if the recipe name or the recipe description are including the search terms, set visible to true
                 if(!recipeName.includes(searchTerms) && !recipeDescription.includes(searchTerms)) {
                     visible = false;
                 }
     
+                // if visible is always false, it means that the recipe doesn't match with the search terms for now but maybe it will match with the ingredients
                 if (visible === false) {
                     recipe.ingredients.forEach(ingredient => {
                         const ingredientName = Normalize(ingredient.ingredient);
-                        !ingredientName.includes(searchTerms) && (visible = false);
+                        if (!ingredientName.includes(searchTerms)) {
+                            visible = false;
+                        }
                     });
                 }
             }
 
+            
             // If the recipe element is hidden remove the class hidden otherwise add it
             if (recipe.element.classList.contains("hidden") === visible) {
                 recipe.toggleVisibility();
