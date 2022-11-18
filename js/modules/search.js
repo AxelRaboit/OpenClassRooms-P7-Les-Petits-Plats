@@ -1,12 +1,45 @@
 import FilterDropdown from '../class/FilterDropdown.js';
 
     const search = (activeTags, recipes) => {
-
-        // Get the main search input
         const searchBar = document.getElementById('main-search__input');
-    
-        // Get the value of the search input if the value length is greater or equal than 3 or return null
-        const search = (searchBar.value.length >= 3) ? searchBar.value.toLowerCase() : null;
+        const searchTerms = (searchBar.value.length >= 3) ? Normalize(searchBar.value) : null;
+
+        let selectedRecipesBySearch = [];
+        
+        if (searchBar.value.length >= 3) {
+            
+            recipes.forEach(recipe => recipe.element.classList.add('hidden'));
+
+            recipes.filter((recipe) => {
+                const recipeName = Normalize(recipe.name);
+                const recipeDescription = Normalize(recipe.description);
+
+                if(recipeName.includes(searchTerms) || recipeDescription.includes(searchTerms)) {
+                    selectedRecipesBySearch.push(recipe);
+                    /* selectedRecipesBySearch = [...new Set(selectedRecipesBySearch)]; */
+                }
+
+                recipe.ingredients.forEach(ingredient => {
+                    const ingredientName = Normalize(ingredient.ingredient);
+                    ingredientName.includes(searchTerms) && selectedRecipesBySearch.push(recipe);
+                });
+
+            })
+        } else {
+            recipes.forEach(recipe => {
+                if (recipe.element.classList.contains('hidden')) {
+                    recipe.element.classList.remove('hidden');
+                }
+            })
+        }
+        
+        selectedRecipesBySearch.forEach((recipe) => {
+            if (recipe.element.classList.contains("hidden") === true) {
+                recipe.element.classList.remove("hidden");
+            } else {
+                recipe.element.classList.add("hidden");
+            }
+        })
     
         // Loop through each recipe and test if there is a match with the filters or the user's search
         recipes.forEach(recipe => {
@@ -26,16 +59,6 @@ import FilterDropdown from '../class/FilterDropdown.js';
                         visible = false;
                     }
                 })
-            }
-
-            // If the user type on the main search bar and it's superior or egal to 3 characters
-            if (search) {
-                // For each recipe if the search value is not included in the recipe name, we hide it
-                recipe.ingredients.forEach(current => {
-                    if (!current.ingredient.toLowerCase().includes(search) && !recipe.description.toLowerCase().includes(search) && !recipe.name.toLowerCase().includes(search)) {
-                        visible = false;
-                    }
-                });
             }
 
             // If the recipe element is hidden remove the class hidden otherwise add it
