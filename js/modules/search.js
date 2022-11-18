@@ -1,5 +1,7 @@
 import FilterDropdown from '../class/FilterDropdown.js';
 
+    const Normalize = string => string.normalize('NFD').toLowerCase();
+
     const search = (activeTags, recipes) => {
         const searchBar = document.getElementById('main-search__input');
         const searchTerms = (searchBar.value.length >= 3) ? Normalize(searchBar.value) : null;
