@@ -50,7 +50,6 @@ import FilterDropdown from '../class/FilterDropdown.js';
                 }
             }
 
-            
             // If the recipe element is hidden remove the class hidden otherwise add it
             if (recipe.element.classList.contains("hidden") === visible) {
                 recipe.toggleVisibility();
