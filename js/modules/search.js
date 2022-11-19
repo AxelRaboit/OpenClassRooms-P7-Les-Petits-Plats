@@ -13,12 +13,15 @@ const search = (activeTags, recipes) => {
         // If the main search bar is used, check if the recipe match with the search terms
         visible = searchMainInput(recipe, visible);
 
+        // Toggle the recipe visibility according the search results
         recipeDisplayer(recipe, visible);
         
     });
 
+    // According the recipes visibility, we update the filters dropdowns
     FilterDropdown.updateDropDowns();
 
+    // Message displayer
     visibilityMessage();
 }
 
