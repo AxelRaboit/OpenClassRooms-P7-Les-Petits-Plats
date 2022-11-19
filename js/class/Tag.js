@@ -51,6 +51,7 @@ export default class Tag {
 
         let element = document.createElement('li');
         element.setAttribute('data-value', this.name);
+        element.setAttribute('title', this.name);
         element.innerText = this.name;
 
         element.addEventListener('click', this.add);
