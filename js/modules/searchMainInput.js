@@ -9,13 +9,13 @@ const searchMainInput = (recipe, visible) => {
         const recipeName = Normalize(recipe.name);
         const recipeDescription = Normalize(recipe.description);
 
-        // If the recipe name and the recipe descrition are not including the search terms, set visible to false
-        // It means if the recipe name or the recipe description are including the search terms, set visible to true
+        // If the recipe name or the recipe description are including the search terms, set visible to true
         if(recipeName.includes(searchTerms) || recipeDescription.includes(searchTerms)) {
             visible = true;
         }
 
-        // if visible is always false, it means that the recipe doesn't match with the search terms for now but maybe it will match with the ingredients
+        // if visible is always false, it means that the recipe doesn't match with the search terms
+        // for now but maybe it will match with the ingredients
         if (visible === false) {
             recipe.ingredients.forEach(current => {
                 const ingredientName = Normalize(current.ingredient);
