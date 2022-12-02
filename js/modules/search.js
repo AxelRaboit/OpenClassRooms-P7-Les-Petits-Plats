@@ -7,12 +7,13 @@ import recipeDisplayer from './recipeDisplayer.js';
 const search = (activeTags, recipes) => {
     recipes.forEach(recipe => {
         // Set recipe visible to true by default
-        let visible = true;
+        let visible = false;
 
-        // If tags are used, check if the recipe match with the tags
-        visible = searchTags(activeTags, recipe, visible);
         // If the main search bar is used, check if the recipe match with the search terms
         visible = searchMainInput(recipe, visible);
+        
+        // If tags are used, check if the recipe match with the tags
+        visible = searchTags(activeTags, recipe, visible);
 
         // Toggle the recipe visibility according the search results
         recipeDisplayer(recipe, visible);
