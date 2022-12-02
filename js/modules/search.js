@@ -5,7 +5,8 @@ import visibilityMessage from './visibilityMessage.js';
 import recipeDisplayer from './recipeDisplayer.js';
 
 const search = (activeTags, recipes) => {
-    recipes.forEach(recipe => {
+    for (let i = 0; i < recipes.length; i++) {
+        let recipe = recipes[i];
         // Set recipe visible to true by default
         let visible = false;
 
@@ -18,7 +19,7 @@ const search = (activeTags, recipes) => {
         // Toggle the recipe visibility according the search results
         recipeDisplayer(recipe, visible);
         
-    });
+    }
 
     // According the recipes visibility, we update the filters dropdowns
     FilterDropdown.updateDropDowns();
