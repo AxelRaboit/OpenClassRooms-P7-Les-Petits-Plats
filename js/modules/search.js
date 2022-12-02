@@ -7,7 +7,7 @@ import recipeDisplayer from './recipeDisplayer.js';
 const search = (activeTags, recipes) => {
     for (let i = 0; i < recipes.length; i++) {
         let recipe = recipes[i];
-        // Set recipe visible to true by default
+        // Set recipe visible to false by default
         let visible = false;
 
         // If the main search bar is used, check if the recipe match with the search terms
