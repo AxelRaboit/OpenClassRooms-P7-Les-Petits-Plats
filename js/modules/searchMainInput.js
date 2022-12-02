@@ -15,7 +15,8 @@ const searchMainInput = (recipe, visible) => {
             visible = true;
         }
 
-        // if visible is always false, it means that the recipe doesn't match with the search terms for now but maybe it will match with the ingredients
+        // if visible is always false, it means that the recipe doesn't match with the search terms
+        // for now but maybe it will match with the ingredients
         if (visible === false) {
             for (let i = 0; i < recipe.ingredients.length; i++) {
                 const ingredient = recipe.ingredients[i];
